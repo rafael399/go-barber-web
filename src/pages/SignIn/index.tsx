@@ -35,7 +35,7 @@ const SignIn: React.FC = () => {
           email: Yup.string()
             .email('Digite um e-mail válido')
             .required('E-mail obrigatório'),
-          password: Yup.string().min(6, 'Senha deve ter no mínimo 6 dígitos'),
+          password: Yup.string().required('Senha obrigatória'),
         });
 
         await schema.validate(data, {
@@ -52,7 +52,12 @@ const SignIn: React.FC = () => {
 
           formRef.current?.setErrors(errors);
         } else {
-          addToast();
+          addToast({
+            type: 'error',
+            title: 'Erro na autenticação',
+            description:
+              'Ocorreu um erro ao fazer login, cheque as credenciais',
+          });
         }
       }
     },
