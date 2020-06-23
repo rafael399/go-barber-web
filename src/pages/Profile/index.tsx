@@ -63,6 +63,7 @@ const Profile: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
+
         const {
           name,
           email,
